@@ -17,6 +17,10 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'python-rope/ropevim'
 Plugin 'majutsushi/tagbar'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'altercation/vim-colors-solarized'
+
 
 " Bundle "tobyS/skeletons.vim"
 " Plugin 'SirVer/ultisnips'
@@ -73,12 +77,8 @@ set cursorcolumn
 set cursorline
 set colorcolumn=79
 
-if ! has("gui_running")
-    set t_Co=256
-endif
-" feel free to choose :set background=light for a different style
-"set background=dark
-colors peaksea
+colorscheme solarized
+set background=dark
 
 " Automatic synax highlighting
 syntax on
