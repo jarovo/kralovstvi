@@ -73,8 +73,13 @@ set cursorcolumn
 set cursorline
 set colorcolumn=79
 
-" colors peaksea
-colors ps_color
+if ! has("gui_running")
+    set t_Co=256
+endif
+" feel free to choose :set background=light for a different style
+"set background=dark
+colors peaksea
+
 " Automatic synax highlighting
 syntax on
 let c_comment_strings=1
