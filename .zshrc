@@ -1,49 +1,98 @@
-#!/bin/zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# completion
-autoload -U compinit
-compinit
+# Path to your oh-my-zsh installation.
+  export ZSH=/home/jhenner/.oh-my-zsh
 
-# correction
-setopt correctall
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="agnoster"
 
-# prompt
-autoload -U promptinit
-promptinit
-#prompt gentoo
-prompt adam2
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-#bindkey -v
-bindkey '^[[A' history-beginning-search-backward
-bindkey '^[[B' history-beginning-search-forward
-bindkey "^[OF" end-of-line
-bindkey "^[OH" beginning-of-line
-bindkey "^[[8~" end-of-line
-bindkey "^[[7~" beginning-of-line
-bindkey "^[Od" vi-backward-word
-bindkey "^[Oc" vi-forward-word
-bindkey "\e[3~" delete-char
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-bindkey "^R"                history-incremental-search-backward
-bindkey "^S"                history-incremental-search-forward
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
-# The following lines were added by compinstall
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle :compinstall filename '/home/jary/.zshrc'
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
 
-# End of lines added by compinstall
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HIST_STAMPS="yyyy-mm-dd"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
 #
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
-setopt correctall
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=15000
 SAVEHIST=15000
@@ -57,55 +106,10 @@ setopt hist_ignore_space
 setopt autocd
 setopt extendedglob
 
-#exec 2>>(while read line; do
-#  print '\e[91m'${(q)line}'\e[0m' > /dev/tty; done &)
-
-alias ls="ls --color=tty"
-
 export SUDO_ASKPASS=/usr/libexec/openssh/ssh-askpass
 
 PATH="$HOME/.local/bin:/sbin/:/usr/sbin:$PATH"
 
-
-alias grepresults="egrep 'Test status .*(Fail|Pass)'"
-alias greppass="grep --color=never 'Test status .*Pass'"
-alias grepfail="grep --color=never 'Test status .*Fail'"
-alias nodate="sed -r 's/^[0-9]{4}-[0-9]{2}-[0-9]{2}//'"
-alias notimedate="nodate | sed -r 's/^ [0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}//'"
-alias nodesc="sed 's/ - rest-Main - .* - Test status for test //'"
-alias nojunk="nodesc | sed -r 's/^ *//'"
-alias colourify='sed -e "s/\(.*TRACE.*\)/\x1b[31;1m&\x1b[0m/" -e "s/\(.*\(ERROR\|WARNING\).*\)/\x1b[30;41m&\x1b[0m/"'
-
-
-nodate='s/^[0-9]{4}-[0-9]{2}-[0-9]{2}//'
-notime='s/^ [0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}//'
-nodesc='s/ - rest-Main - .* - Test status for test //'
-nojunk='s/^ *//'
-col_fail='s/Fail/\x1b[31;1m&\x1b[0m/'
-col_pass='s/Pass/\x1b[32;1m&\x1b[0m/'
-col_ERROR='s/ERROR/\x1b[31;1m&\x1b[0m/'
-
-alias coulourify2='sed -e "s/(Fail|ERROR)/\x1b[31;1m&\x1b[0m/" -e "s/Pass/\x1b[32;1m&\x1b[0m/"'
-export COLOURIFY='sed  -e s/^.*ERROR.*$/\x1b[1;37;41m&\x1b[0m/i -e s/^.*WARN.*$/\x1b[30;47m&\x1b[0m/'
-
-
-xznc () { ssh "$1" "xz < $2" | xzcat };
-last_testlog () { echo `ls -c1 /var/tmp/*Tests*.log | head -n1` };
 export EDITOR="gvim -f"
-
-export WORKON_HOME=$HOME/.virtualenvs
-#source /usr/bin/virtualenvwrapper.sh
-
-# pip zsh completion start
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] ) )
-}
-compctl -K _pip_completion pip-python
-# pip zsh completion end
 
 [ -r .private/zshrc ] && . .private/zshrc

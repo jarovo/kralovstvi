@@ -58,12 +58,16 @@ filetype plugin indent on    " required
 "set termencoding=utf-8
 "set encoding=utf-8
 
-" set guifont=terminus\ 12
+let g:airline_powerline_fonts = 1
+
+"set guifont=terminus\ 12
 "set guifont=Monospace\ 12
 " set guifont=Fixed\ Semi-Condensed\ 13
 " set guifont=-misc-fixed-medium-r-normal-*-18-120-100-100-c-90-iso10646-1
 " set guifontwide=-misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso10646-1
-set guifont=DeJaVu\ Sans\ Mono\ 11
+"set guifont=DeJaVu\ Sans\ Mono\ 11
+set guifont=Hack 11
+
 
 set autoindent
 set smartindent
