@@ -1,5 +1,5 @@
 URxvt.reverseVideo: true
-URxvt.font: xft:Dejavu Sans Mono:pixelsize=18
+URxvt.font: xft:Hack:pixelsize=16
 URxvt.saveLines: 10000
 URxvt.visualBell: true
 

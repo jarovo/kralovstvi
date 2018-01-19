@@ -66,7 +66,7 @@ let g:airline_powerline_fonts = 1
 " set guifont=-misc-fixed-medium-r-normal-*-18-120-100-100-c-90-iso10646-1
 " set guifontwide=-misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso10646-1
 "set guifont=DeJaVu\ Sans\ Mono\ 11
-set guifont=Hack 11
+set guifont=Hack\ 11
 
 
 set autoindent
