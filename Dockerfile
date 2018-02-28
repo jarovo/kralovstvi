@@ -1,4 +1,4 @@
 FROM fedora
 COPY .git /kralovstvi 
-RUN scripts/bootstrap.sh
-RUN git checkout /kralovstvi
+#RUN dnf install -y git
+RUN /kralovstvi/scripts/bootstrap.sh
