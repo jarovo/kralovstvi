@@ -1,3 +1,8 @@
-#!/bin/bash
+#!/bin/bash -x
 
-sudo dnf install -y gvim qgit zsh 
+sudo dnf install -y  \
+	util-linux-user \
+	gvim qgit zsh 
+
+chsh -s /bin/zsh
+
