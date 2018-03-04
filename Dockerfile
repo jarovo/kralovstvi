@@ -1,4 +1,7 @@
 FROM fedora
-COPY .git /kralovstvi 
-#RUN dnf install -y git
-RUN /kralovstvi/scripts/bootstrap.sh
+COPY . /kralovstvi 
+RUN dnf install -y sudo
+RUN dnf install -y  \
+	util-linux-user \
+	findutils \
+	gvim qgit zsh 
