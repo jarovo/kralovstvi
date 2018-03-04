@@ -1,0 +1,4 @@
+FROM jhenner_base
+RUN chsh -s /bin/zsh
+COPY . /kralovstvi 
+RUN KRALOVSTVI=/kralovstvi /kralovstvi/scripts/bootstrap.sh
