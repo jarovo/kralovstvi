@@ -69,8 +69,6 @@ let g:airline_powerline_fonts = 1
 set guifont=Hack\ 11
 
 
-set autoindent
-set smartindent
 set hlsearch
 set nonumber
 set showmatch
@@ -89,14 +87,17 @@ syntax on
 let c_comment_strings=1
 
 "set autowrite
-set shiftwidth=8
-set tabstop=8
-set softtabstop=8
+set tabstop=4
+set shiftwidth=4
+set expandtab
 set shiftround
 "set lines=35
 "set columns=120
 set smarttab
-"set wrap
+set autoindent
+set smartindent
+set expandtab
+
 set showbreak=>>\ \|
 set linebreak
 set scrolloff=5 " Rows from cursor to screenedges
