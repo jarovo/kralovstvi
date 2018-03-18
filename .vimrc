@@ -20,6 +20,8 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'rust-lang/rust.vim'
+Plugin 'jhenner/vim-cargo'
 
 
 " Bundle "tobyS/skeletons.vim"
@@ -60,13 +62,8 @@ filetype plugin indent on    " required
 
 let g:airline_powerline_fonts = 1
 
-"set guifont=terminus\ 12
-"set guifont=Monospace\ 12
-" set guifont=Fixed\ Semi-Condensed\ 13
-" set guifont=-misc-fixed-medium-r-normal-*-18-120-100-100-c-90-iso10646-1
-" set guifontwide=-misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso10646-1
-"set guifont=DeJaVu\ Sans\ Mono\ 11
-set guifont=Hack\ 11
+set guifont=Anonymous\ Pro\ for\ Powerline\ 11
+"set guifont=Hack\ 11
 
 
 set hlsearch
@@ -88,6 +85,7 @@ let c_comment_strings=1
 
 "set autowrite
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
 set shiftround

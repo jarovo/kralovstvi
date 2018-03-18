@@ -1,5 +1,4 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+#!/bin/zsh
 
 # Path to your oh-my-zsh installation.
   export ZSH=/home/jhenner/.oh-my-zsh
@@ -49,7 +48,7 @@ ZSH_THEME="agnoster"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -92,10 +91,24 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+#
 HISTFILE=~/.histfile
 HISTSIZE=15000
 SAVEHIST=15000
+
+#bindkey -v
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
+bindkey "^[OF" end-of-line
+bindkey "^[OH" beginning-of-line
+bindkey "^[[8~" end-of-line
+bindkey "^[[7~" beginning-of-line
+bindkey "^[Od" vi-backward-word
+bindkey "^[Oc" vi-forward-word
+bindkey "\e[3~" delete-char
+
+bindkey "^R"                history-incremental-search-backward
+bindkey "^S"                history-incremental-search-forward
 
 setopt inc_append_history
 setopt share_history
@@ -106,10 +119,12 @@ setopt hist_ignore_space
 setopt autocd
 setopt extendedglob
 
+alias ls="ls --color=tty"
+
+# Ask ssh agent passwords 
 export SUDO_ASKPASS=/usr/libexec/openssh/ssh-askpass
 
 PATH="$HOME/.local/bin:/sbin/:/usr/sbin:$PATH"
 
 export EDITOR="gvim -f"
-
-[ -r .private/zshrc ] && . .private/zshrc
+alias urxvt=urxvt-ml # The -ml urxvt displays the powerline fonts fine.
