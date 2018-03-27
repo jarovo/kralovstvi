@@ -5,6 +5,9 @@ KRALOVSTVI=${KRALOVSTVI:-`pwd`}
 set -x
 #set -e
 
+# Allow local non-network connections to Xorg.
+xhost +local:
+
 # TODO(jhenner) Find way of distributing private files -- like ssh keys and
 # stuff like that.
 
