@@ -16,7 +16,18 @@ cp .Xresources ~jhenner/
 cp .gitconfig ~jhenner/
 
 
+# Install powerline fonts.
+# clone
+git clone https://github.com/powerline/fonts.git --depth=1
+# install
+cd fonts
+./install.sh
+# clean-up a bit
+cd ..
+rm -rf fonts
+
 mkdir -p .vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ln -s kralovstvi/.vimrc ~jhenner/.vimrc
 vim +PluginInstall +qall
+
