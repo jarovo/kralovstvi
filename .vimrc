@@ -21,7 +21,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'rust-lang/rust.vim'
-Plugin 'jhenner/vim-cargo'
+"Plugin 'git+ssh@github.com:jaryn/vim-cargo.git'
 
 
 " Bundle "tobyS/skeletons.vim"
