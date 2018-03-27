@@ -5,6 +5,9 @@ KRALOVSTVI=${KRALOVSTVI:-`pwd`}
 set -x
 #set -e
 
+# TODO(jhenner) Find way of distributing private files -- like ssh keys and
+# stuff like that.
+
 sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
 < "$KRALOVSTVI/scripts/software" xargs sudo dnf install -y
 
