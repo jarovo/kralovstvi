@@ -3,19 +3,36 @@
 KRALOVSTVI=${KRALOVSTVI:-`pwd`}
 
 set -x
-#set -e
+set -e
 
 # Allow local non-network connections to Xorg.
-xhost +local:
+#xhost +local:
+
+# Add user to wheel group to allow sudo.
+#usermod -a -G wheel `whoami`
+
+# Upgrade the system
+# sudo dnf upgrade
+
+# Install wine
+yum repolist | grep codeready-builder || sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+rpm -q epel-release || {
+    sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    sudo dnf install wine
+}
+
 
 # TODO(jhenner) Find way of distributing private files -- like ssh keys and
 # stuff like that.
 
-sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
+# To allow installing from rpmfusion.
+#sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
+
+#Install software
 < "$KRALOVSTVI/scripts/software" xargs sudo dnf install -y
 
 # Install Oh-My-ZSH
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+test -e ~/.oh-my-zsh || sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 cp .Xdefaults ~jhenner/
 cp .Xresources ~jhenner/
@@ -32,13 +49,15 @@ cd fonts
 cd ..
 rm -rf fonts
 
-mkdir -p .vim/bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-ln -s kralovstvi/.vimrc ~jhenner/.vimrc
-vim +PluginInstall +qall
+test -e ~/.vim/bundle || {
+    mkdir -p .vim/bundle
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    ln -s kralovstvi/.vimrc ~jhenner/.vimrc
+    vim +PluginInstall +qall
+}
 
 # Make sure the Microsoft Ergonomic Keyboard 4000 scrolling works.
-cat > /etc/udev/hwdb.d/61-keyboard-local.hwdb <<EOF
+sudo bash -c 'cat > /etc/udev/hwdb.d/61-keyboard-local.hwdb' <<EOF
 # Microsoft Natural Ergonomic Keyboard 4000 - remap zoom in/out to page up/down
 evdev:input:b0003v045Ep00DB*
  KEYBOARD_KEY_c022d=pageup
