@@ -18,7 +18,6 @@ set -e
 yum repolist | grep codeready-builder || sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
 rpm -q epel-release || {
     sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-    sudo dnf install wine
 }
 
 
@@ -50,7 +49,7 @@ cd ..
 rm -rf fonts
 
 test -e ~/.vim/bundle || {
-    mkdir -p .vim/bundle
+    mkdir -p ~.vim/bundle
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     ln -s kralovstvi/.vimrc ~jhenner/.vimrc
     vim +PluginInstall +qall
@@ -65,3 +64,6 @@ evdev:input:b0003v045Ep00DB*
 EOF
 sudo udevadm hwdb --update
 sudo udevadm control --reload
+
+sudo ln -s /var/lib/snapd/snap /snap
+sudo snap install signal-desktop

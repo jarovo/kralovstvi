@@ -9,3 +9,6 @@ vim-powerline
 meld
 strace
 pavucontrol
+
+snapd
+wine
