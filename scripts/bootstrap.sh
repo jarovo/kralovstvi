@@ -65,5 +65,16 @@ EOF
 sudo udevadm hwdb --update
 sudo udevadm control --reload
 
-sudo ln -s /var/lib/snapd/snap /snap
+[ -e /snap ] || sudo ln -s /var/lib/snapd/snap /snap
 sudo snap install signal-desktop
+
+sudo cp scripts/profile.d/pycharm.sh /etc/profile.d/
+set +x
+echo
+echo
+echo '================================================================='
+echo 'Please download pycharm and extract it and create a link like so:'
+echo '# cd /opt && ln -s pycharm-community-2020.3.3 pycharm'
+echo '================================================================='
+echo
+set -x
