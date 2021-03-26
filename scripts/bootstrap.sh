@@ -28,7 +28,7 @@ rpm -q epel-release || {
 #sudo dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-27.noarch.rpm
 
 #Install software
-< "$KRALOVSTVI/scripts/software" xargs sudo dnf install -y
+< "$KRALOVSTVI/data/software" xargs sudo dnf install -y
 
 # Install Oh-My-ZSH
 test -e ~/.oh-my-zsh || sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -68,7 +68,7 @@ sudo udevadm control --reload
 [ -e /snap ] || sudo ln -s /var/lib/snapd/snap /snap
 sudo snap install signal-desktop
 
-sudo cp scripts/profile.d/pycharm.sh /etc/profile.d/
+sudo cp "$KRALOVSTVI/data/etc/profile.d/pycharm.sh" /etc/profile.d/
 set +x
 echo
 echo
