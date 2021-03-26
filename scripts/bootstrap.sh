@@ -66,6 +66,8 @@ sudo udevadm hwdb --update
 sudo udevadm control --reload
 
 [ -e /snap ] || sudo ln -s /var/lib/snapd/snap /snap
+sudo systemctl enable snapd
+sudo systemctl start snapd
 sudo snap install signal-desktop
 
 sudo cp "$KRALOVSTVI/data/etc/profile.d/pycharm.sh" /etc/profile.d/
