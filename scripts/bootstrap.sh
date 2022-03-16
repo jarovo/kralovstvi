@@ -1,6 +1,9 @@
 #!/bin/bash
 
 KRALOVSTVI=${KRALOVSTVI:-`pwd`}
+USER_HOME=/home/jhenner
+
+echo Environment variable KRALOVSVI="$KRALOVSTVI"
 
 set -x
 set -e
@@ -15,10 +18,9 @@ set -e
 # sudo dnf upgrade
 
 # Install wine
-yum repolist | grep codeready-builder || sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-rpm -q epel-release || {
-    sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-}
+#yum repolist | grep codeready-builder || ( [ ! -e /.dockerenv ] && grep "Red Hat Enterprise" /etc/redhat-release && sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms ) && rpm -q epel-release || {
+#    sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+#}
 
 
 # TODO(jhenner) Find way of distributing private files -- like ssh keys and
@@ -33,9 +35,7 @@ rpm -q epel-release || {
 # Install Oh-My-ZSH
 test -e ~/.oh-my-zsh || sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-cp .Xdefaults ~jhenner/
-cp .Xresources ~jhenner/
-cp .gitconfig ~jhenner/
+cp "$KRALOVSTVI/.Xdefaults" "$KRALOVSTVI/.Xresources" "$KRALOVSTVI/.gitconfig"  "$USER_HOME"
 
 
 # Install powerline fonts.
@@ -51,7 +51,7 @@ rm -rf fonts
 test -e ~/.vim/bundle || {
     mkdir -p ~.vim/bundle
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-    ln -s kralovstvi/.vimrc ~jhenner/.vimrc
+    ln -s kralovstvi/.vimrc "$USER_HOME/.vimrc"
     vim +PluginInstall +qall
 }
 
@@ -65,18 +65,27 @@ EOF
 sudo udevadm hwdb --update
 sudo udevadm control --reload
 
-[ -e /snap ] || sudo ln -s /var/lib/snapd/snap /snap
-sudo systemctl enable snapd
-sudo systemctl start snapd
-sudo snap install signal-desktop
+[ -e /snap ] || {
+    sudo ln -s /var/lib/snapd/snap /snap
+    sudo systemctl enable snapd
+    sudo systemctl start snapd
+}
+
+snap list signal-desktop 2> /dev/null || sudo snap install signal-desktop
+snap list telegram-desktop 2> /dev/null || sudo snap install telegram-desktop
+
 
 sudo cp "$KRALOVSTVI/data/etc/profile.d/pycharm.sh" /etc/profile.d/
 set +x
 echo
 echo
-echo '================================================================='
+echo '================================================================================'
 echo 'Please download pycharm and extract it and create a link like so:'
 echo '# cd /opt && ln -s pycharm-community-2020.3.3 pycharm'
-echo '================================================================='
+echo 'Please follow manual bellow to configure VPN'
+echo 'https://redhat.service-now.com/help?id=kb_article_view&sysparm_article=KB0005424'
+echo '================================================================================'
 echo
 set -x
+
+sudo cp "$KRALOVSTVI/data/etc/sysctl.d/60-jetbrains.conf" "/etc/sysctl.d/60-jetbrains.conf"
